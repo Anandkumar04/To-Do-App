@@ -13,10 +13,8 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: "https://todo-app-omega-two-85.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  allowedHeaders: ["Content-Type"]
 }));
-
-app.options("*", cors()); // ✅ VERY IMPORTANT
 
 app.use(express.json());
 
