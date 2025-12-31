@@ -3,12 +3,21 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const taskRoutes = require("./routes/taskRoutes");
-const PORT = process.env.PORT || 5000;
 
 dotenv.config();
 
 const app = express();
-app.use(cors());
+const PORT = process.env.PORT || 5000;
+
+// ✅ CORS FIX
+app.use(cors({
+  origin: "https://todo-app-omega-two-85.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
+app.options("*", cors()); // ✅ VERY IMPORTANT
+
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
