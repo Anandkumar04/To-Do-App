@@ -9,10 +9,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ✅ CORS FIX
 app.use(cors({
   origin: "https://todo-app-omega-two-85.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type"]
 }));
 
@@ -20,7 +19,7 @@ app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected successfully"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+  .catch(err => console.error("MongoDB connection error:", err));
 
 app.use("/api/tasks", taskRoutes);
 
